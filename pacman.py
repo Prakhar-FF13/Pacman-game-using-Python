@@ -3,11 +3,11 @@ from turtle import *
 from base import vector,floor,square
 
 state = { 'score':0 }
-path = Tortle(visible = False)
-writer = Tortle(visible = False)
+path = Turtle(visible = False)
+writer = Turtle(visible = False)
 
 aim = vector(5, 0)
-pacman = vector(-40, 80)
+pacman = vector(-40, -80)
 
 ghosts = [
     [vector(-180, 160), vector(5,0)],
@@ -67,7 +67,7 @@ def valid(point):
     return ((point.x % 20 == 0) or (point.y % 20 == 0))
 
 def world():
-    bg.color('black')
+    bgcolor('black')
     path.color('blue')
 
     for index in range(len(tiles)):
@@ -79,7 +79,7 @@ def world():
             if tile == 1:
                 path.up()
                 path.goto(x + 10, y + 10)
-                path.dot(2, ' white')
+                path.dot(2, 'white')
 
 
 def move():
@@ -136,3 +136,18 @@ def change(x, y):
         aim.y = y
 
 
+setup(420, 420, 370, 0)
+hideturtle()
+tracer(False)
+writer.goto(160, 160)
+writer.color('white')
+writer.write(state['score'])
+listen()
+onkey(lambda: change(5,0), 'Right')
+onkey(lambda: change(-5,0), 'Left')
+onkey(lambda: change(0,5), 'Up')
+onkey(lambda: change(0,-5), 'Down')
+
+world()
+move()
+done()

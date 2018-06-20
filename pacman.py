@@ -120,3 +120,19 @@ def move():
         dot(20, 'red')
 
     update()
+
+    # checking for collisions.
+
+    for point,course in ghosts:
+        if abs(pacman - point) < 20:
+            return
+
+    ontimer(move, 100)
+
+def change(x, y):
+    # changing pacman aim if valid
+    if valid(pacman + vector(x,y)):
+        aim.x = x
+        aim.y = y
+
+

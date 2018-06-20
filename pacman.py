@@ -49,3 +49,19 @@ def square(x, y):
         path.forward(20)
         path.lef(90)
     path.end_fill()
+
+def offset(point):
+    x = (floor(point.x, 20) + 200) / 20
+    y = (180 - floor(point.y, 20)) / 20
+    index = int(x + y * 20)
+    return index
+
+def valid(point):
+    index = offset(point)
+    if tiles[index] == 0:
+        return False
+    index = offset(point + 19)
+    if tiles[index] == 0:
+        return False
+    return ((point.x % 20 == 0) or (point.y % 20 == 0))
+
